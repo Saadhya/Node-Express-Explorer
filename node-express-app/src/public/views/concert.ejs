@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concert Details - <%= concert_info.artist %></title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+      /* Base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+
+      .concert-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 20px;
+      }
+
+      /* Concert image styling */
+      .concert-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      /* Concert details styling */
+      .concert-details {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .concert-details h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .concert-description {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 20px;
+      }
+
+      .concert-info p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        color: #444;
+      }
+
+      .concert-link {
+        font-size: 1rem;
+        background-color: #10d1b4e5;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 20px;
+        transition: background-color 0.3s;
+        margin-top: 40px;
+      }
+
+      .concert-link:hover {
+        background-color: #076758e5;
+      }
+
+      /* Responsive Layout */
+      @media (min-width: 768px) {
+        .concert-container {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        .concert-image {
+          width: 45%;
+        }
+
+        .concert-details {
+          width: 50%;
+          padding-left: 20px;
+          text-align: left;
+        }
+
+        .concert-details h1 {
+          font-size: 3rem;
+        }
+
+        .concert-description {
+          font-size: 1.4rem;
+        }
+
+        .concert-info p {
+          font-size: 1.1rem;
+        }
+
+        .concert-link {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="concert-container">
+      <div class="concert-image">
+        <img
+          src="<%= concert_info.image %>"
+          alt="<%= concert_info.artist %> concert image"
+        />
+      </div>
+      <div class="concert-details">
+        <h1><%= concert_info.artist %></h1>
+        <p class="concert-description"><%= concert_info.desc %></p>
+        <div class="concert-info">
+          <p><strong>Date:</strong> <%= concert_info.date %></p>
+          <p><strong>Time:</strong> <%= concert_info.time %></p>
+          <p><strong>Price:</strong> $<%= concert_info.price %></p>
+        </div>
+        <a href="#" class="concert-link">Place Order</a>
+        <!-- <button onclick="save-to-cart()" class="concert-link">Place Order</button> -->
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    let addToCart = document.querySelector(
+      ".concert-container .concert-details a"
+    );
+    addToCart.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+console.log("<%=concert_info?.time%>");
+
+        let body = JSON.stringify({
+          id: "<%=concert_info.id%>",
+          time: "<%=concert_info.time%>",
+          price: "<%=concert_info.price%>",
+          artist: "<%=concert_info.artist%>",
+          date: "<%=concert_info.date%>",
+        });
+        fetch("http://localhost:3000/save-to-cart", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: body,
+        });
+      },
+      false
+    );
+  </script>
+</html>

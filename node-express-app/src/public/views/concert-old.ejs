@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concert</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <h1>concert testing with process.cwd()</h1> -->
+    <h4>count tickets</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Purchase Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <img src="<%=concert_info.image %>" width="100" height="60" />
+          </td>
+          <td><%= concert_info.artist%></td>
+          <td><%= concert_info.date%> <%= concert_info.time%></td>
+          <td><%= concert_info.desc%></td>
+          <td>$<%= concert_info.price%></td>
+          <td>
+            <a href="<%=concert_info.link %>" target="_blank">Buy Tickets</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
