@@ -70,3 +70,6 @@ is it within an acceptable range?
 - node --test --test-reporter=dot
 - node --test --test-reporter=lcov --experimental-test-coverage  stack.test.js
 
+this will generate test.info file:-
+- node --test --test-reporter=lcov --experimental-test-coverage --test-reporter-destination=test.info
+- node --test --test-reporter=lcov --experimental-test-coverage --test-reporter-destination=test.info  stack.test.js
